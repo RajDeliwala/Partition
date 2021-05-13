@@ -79,7 +79,34 @@ class linked_list:
                 newLinkedList.appendtoFront(cur.data)
             elif(cur.data >= partition):
                 newLinkedList.appendtoEnd(cur.data)
-        newLinkedList.print()
+        newLinkedList.display()
+
+    #Method 2, create 2 linked list
+    def partition(self, x):
+        #Creating linked list for the left and right
+        smallList = linked_list()
+        bigList = linked_list()
+        cur = self.head
+        while cur.next != None:
+            cur = cur.next
+            if(cur.data < x):
+                smallList.append(cur.data)
+            elif(cur.data >= x):
+                bigList.appendtoEnd(cur.data)
+        #smallList.display()
+        #bigList.display()
+
+        tail = bigList.head
+        while tail != None:
+            if(tail.data == None):
+                tail = tail.next
+            smallList.appendtoEnd(tail.data)
+            tail = tail.next
+        smallList.display()
+            
+
+
+
 
 
 
@@ -99,4 +126,5 @@ myList.append(2)
 myList.append(1)
 
 #Display current linked list
-myList.partitionList(5)
+
+myList.partition(5)
